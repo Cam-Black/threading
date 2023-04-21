@@ -17,10 +17,10 @@ public class MultiThreading {
         Timing.startTime();
 
 
-        Thread[] threads = new Thread[InputFiles.files.length];
+        Thread[] threads = new Thread[InputFiles.getFilesLength()];
 
-        for (int i = 0; i < InputFiles.files.length; i++) {
-            Adder adder = new Adder(InputFiles.files[i], OutputFiles.files[i]);
+        for (int i = 0; i < InputFiles.getFilesLength(); i++) {
+            Adder adder = new Adder(InputFiles.getFile(i), OutputFiles.getFile(i));
             threads[i] = new Thread(adder);
             threads[i].start();
         }

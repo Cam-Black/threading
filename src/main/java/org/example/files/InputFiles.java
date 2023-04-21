@@ -1,7 +1,7 @@
 package org.example.files;
 
 public class InputFiles {
-    public static final String[] files =
+    private static final String[] files =
                     { "./src/main/resources/input-files/file1.txt",
                                     "./src/main/resources/input-files/file2.txt",
                                     "./src/main/resources/input-files/file3.txt",
@@ -11,5 +11,13 @@ public class InputFiles {
 
     private InputFiles() {
         super();
+    }
+
+    public static String getFile(int i) {
+        return files[i];
+    }
+
+    public static int getFilesLength() {
+        return files.length;
     }
 }

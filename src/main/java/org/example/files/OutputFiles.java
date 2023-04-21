@@ -1,7 +1,7 @@
 package org.example.files;
 
 public class OutputFiles {
-    public static final String[] files = {
+    private static final String[] files = {
                     "./src/main/resources/output-files/file1_out.txt",
                     "./src/main/resources/output-files/file2_out.txt",
                     "./src/main/resources/output-files/file3_out.txt",
@@ -12,5 +12,9 @@ public class OutputFiles {
 
     private OutputFiles() {
         super();
+    }
+
+    public static String getFile(int i) {
+        return files[i];
     }
 }
