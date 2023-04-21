@@ -1,4 +1,0 @@
-20230421 10:15:24 INFO  [main] org.example.MultiThreading 14 - Starting multi-thread application
-20230421 10:15:24 INFO  [main] org.example.timing.Timing 17 - Stopwatch Started.
-20230421 10:15:24 INFO  [main] org.example.timing.Timing 22 - Stopwatch Stopped.
-20230421 10:15:24 INFO  [main] org.example.timing.Timing 26 - Time Elapsed: 2ms
