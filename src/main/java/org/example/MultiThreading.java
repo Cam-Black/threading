@@ -7,6 +7,8 @@ import org.example.files.InputFiles;
 import org.example.files.OutputFiles;
 import org.example.timing.Timing;
 
+import java.util.Arrays;
+
 public class MultiThreading {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -15,12 +17,21 @@ public class MultiThreading {
         Timing.startTime();
         InputFiles inFiles = new InputFiles();
         OutputFiles outFiles = new OutputFiles();
+        Thread[] threads = new Thread[inFiles.getFiles().length];
 
         for (int i = 0; i < inFiles.getFiles().length; i++) {
             Adder adder = new Adder(inFiles.getFiles()[i], outFiles.getFiles()[i]);
-            Thread thread = new Thread(adder);
-            thread.start();
+            threads[i] = new Thread(adder);
+            threads[i].start();
         }
+
+        Arrays.stream(threads).forEach(el -> {
+            try {
+                el.join();
+            } catch (InterruptedException ie) {
+                el.interrupt();
+            }
+        });
 
         Timing.endTime();
         Timing.getElapsedTime();
