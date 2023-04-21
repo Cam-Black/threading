@@ -7,7 +7,9 @@ import org.example.files.InputFiles;
 import org.example.files.OutputFiles;
 import org.example.timing.Timing;
 
-import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class MultiThreading {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -16,24 +18,22 @@ public class MultiThreading {
         LOGGER.info("Starting multi-threaded application");
         Timing.startTime();
 
-
-        Thread[] threads = new Thread[InputFiles.getFilesLength()];
+        ExecutorService es = Executors.newFixedThreadPool(3);
 
         for (int i = 0; i < InputFiles.getFilesLength(); i++) {
             Adder adder = new Adder(InputFiles.getFile(i), OutputFiles.getFile(i));
-            threads[i] = new Thread(adder);
-            threads[i].start();
+            es.submit(adder);
         }
 
-        Arrays.stream(threads).forEach(el -> {
-            try {
-                el.join();
-            } catch (InterruptedException ie) {
-                el.interrupt();
+        try {
+            es.shutdown();
+            if (es.awaitTermination(60, TimeUnit.SECONDS)) {
+                Timing.endTime();
+                Timing.getElapsedTime();
             }
-        });
-
-        Timing.endTime();
-        Timing.getElapsedTime();
+        } catch (InterruptedException ie) {
+            LOGGER.error(ie);
+            Thread.currentThread().interrupt();
+        }
     }
 }
