@@ -24,15 +24,6 @@ public class CallableFuture {
             results[i] = es.submit(adder);
         }
 
-        Arrays.stream(results).forEach(el -> {
-            try {
-                LOGGER.info("Total: {}", el.get());
-            } catch (InterruptedException | ExecutionException e) {
-                LOGGER.error(e);
-                Thread.currentThread().interrupt();
-            }
-        });
-
         try {
             es.shutdown();
             if (es.awaitTermination(60, TimeUnit.SECONDS)) {
@@ -43,5 +34,14 @@ public class CallableFuture {
             LOGGER.error(ie);
             Thread.currentThread().interrupt();
         }
+
+        Arrays.stream(results).forEach(el -> {
+            try {
+                LOGGER.info("Total: {}", el.get());
+            } catch (InterruptedException | ExecutionException e) {
+                LOGGER.error(e);
+                Thread.currentThread().interrupt();
+            }
+        });
     }
 }
