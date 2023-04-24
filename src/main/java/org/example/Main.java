@@ -15,8 +15,10 @@ public class Main {
         ExecutorService es = Executors.newFixedThreadPool(5);
         BankAccount account = new BankAccount(100);
 
-        Worker worker = new Worker(account);
-        es.submit(worker);
+        for (int i = 0; i < 5; i++) {
+            Worker worker = new Worker(account);
+            es.submit(worker);
+        }
 
         try {
             es.shutdown();

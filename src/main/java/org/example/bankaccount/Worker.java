@@ -16,10 +16,9 @@ public class Worker implements Runnable {
     public void run() {
         for (int i = 0; i < 10; i++) {
             int startBalance = account.getBalance();
-            LOGGER.info("Start Balance: {}", startBalance);
             account.deposit(10);
             int endBalance = account.getBalance();
-            LOGGER.info("End Balance: {}", endBalance);
+            LOGGER.info("End Balance: {}, Start Balance: {}, Worker: {}", endBalance, startBalance, i);
         }
     }
 }
