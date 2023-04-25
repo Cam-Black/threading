@@ -5,8 +5,8 @@ import org.example.customer.Customer;
 import java.util.Arrays;
 import java.util.List;
 
-public class CustomerDetails {
-    private CustomerDetails() {
+public class Customers {
+    private Customers() {
         super();
     }
     public static final Customer customerOne = new Customer(1, "John", "Doe", "2000-06-15");

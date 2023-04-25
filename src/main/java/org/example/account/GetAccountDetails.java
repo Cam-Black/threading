@@ -1,6 +1,6 @@
 package org.example.account;
 
-import org.example.constants.AccountDetails;
+import org.example.constants.Accounts;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ public class GetAccountDetails {
     }
 
     public static List<Account> getDetails(List<Integer> accountIds) {
-        List<Account> accounts = AccountDetails.getAccounts();
+        List<Account> accounts = Accounts.getAccounts();
         return accounts.stream()
                         .filter(el -> accountIds
                                         .stream()
