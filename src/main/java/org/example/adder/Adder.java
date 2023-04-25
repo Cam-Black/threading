@@ -37,7 +37,7 @@ public class Adder implements Callable<Integer> {
     }
 
     @Override
-    public Integer call() throws IOException {
+    public Integer call() {
             return doAdd();
     }
 }
