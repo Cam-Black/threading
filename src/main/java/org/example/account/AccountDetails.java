@@ -4,17 +4,17 @@ import org.example.customer.Customer;
 
 import java.util.Objects;
 
-public class Account {
+public class AccountDetails {
     private int id;
     private Customer customer;
     private String openDate;
     private String prodType;
 
-    public Account() {
+    public AccountDetails() {
         super();
     }
 
-    public Account(int id, Customer customer, String openDate, String prodType) {
+    public AccountDetails(int id, Customer customer, String openDate, String prodType) {
         this.id = id;
         this.customer = customer;
         this.openDate = openDate;
@@ -39,7 +39,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" +
+        return "AccountDetails{" +
                         "customer=" + getCustomer() +
                         ", openDate='" + getOpenDate() + '\'' +
                         ", prodType='" + getProdType() + '\'' +
@@ -52,9 +52,9 @@ public class Account {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        Account account = (Account) o;
-        return Objects.equals(openDate, account.openDate) && Objects.equals(prodType,
-                        account.prodType) && Objects.equals(customer, account.customer);
+        AccountDetails accountDetails = (AccountDetails) o;
+        return Objects.equals(openDate, accountDetails.openDate) && Objects.equals(prodType,
+                        accountDetails.prodType) && Objects.equals(customer, accountDetails.customer);
     }
 
     @Override
