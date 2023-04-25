@@ -12,7 +12,7 @@ public class GetCustomerAccounts {
         super();
     }
 
-    public static List<Integer> getAccountDetails(int id) {
+    public static List<Integer> getAccountIdsFromCustomerId(int id) {
         List<Account> accounts = AccountDetails.getAccounts();
         Customer customer = CustomerDetails.getCustomerFromId(id);
         return accounts.stream()
