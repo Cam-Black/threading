@@ -6,23 +6,23 @@ import org.apache.logging.log4j.Logger;
 
 public class Timing {
     private static final Logger LOGGER = LogManager.getLogger();
-    public static StopWatch stopWatch = new StopWatch();
+    public static final StopWatch stopWatch = new StopWatch();
 
-    public Timing() {
+    private Timing() {
         super();
     }
 
     public static void startTime() {
         stopWatch.start();
-        LOGGER.info("Stopwatch Started.");
+        LOGGER.warn("Stopwatch Started.");
     }
 
     public static void endTime() {
         stopWatch.stop();
-        LOGGER.info("Stopwatch Stopped.");
+        LOGGER.warn("Stopwatch Stopped.");
     }
 
     public static void getElapsedTime() {
-        LOGGER.info("Time Elapsed: {}ms", stopWatch.getTime());
+        LOGGER.warn("Time Elapsed: {}ms", stopWatch.getTime());
     }
 }
