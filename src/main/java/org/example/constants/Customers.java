@@ -1,11 +1,15 @@
 package org.example.constants;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.customer.Customer;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Customers {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private Customers() {
         super();
     }
@@ -17,6 +21,14 @@ public class Customers {
 
     public static Customer getCustomerFromId(int id) {
         List<Customer> customerList = Arrays.asList(customerOne, customerTwo, customerThree, customerFour, customerFive);
-        return customerList.get(id-1);
+        try {
+            Customer customer = customerList.get(id-1);
+            LOGGER.info("Customer found: {}", customer);
+            return customer;
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.error("No Customer Found for ID: {}", id);
+            return new Customer();
+        }
+
     }
 }
