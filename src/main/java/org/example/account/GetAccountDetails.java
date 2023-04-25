@@ -5,27 +5,34 @@ import org.apache.logging.log4j.Logger;
 import org.example.constants.Accounts;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.concurrent.Callable;
 
-public class GetAccountDetails {
+public class GetAccountDetails implements Callable<AccountDetails> {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private GetAccountDetails() {
+    private final Integer accountId;
+
+    public GetAccountDetails(Integer accountId) {
         super();
+        this.accountId = accountId;
     }
 
-    public static List<AccountDetails> getDetails(List<Integer> accountIds) {
+    private static AccountDetails getDetails(Integer accountId) {
         List<AccountDetails> accounts = Accounts.getAccounts();
 
-        LOGGER.info("Retrieving Account Details for Account IDs: {}", accountIds);
+        LOGGER.info("Retrieving Account Details for Account ID: {}", accountId);
 
-        List<AccountDetails> accountDetails = accounts.stream()
-                        .filter(el -> accountIds
-                                        .stream()
-                                        .anyMatch(el2 -> el2 == el.getId()))
-                        .collect(Collectors.toList());
+        AccountDetails accountDetails = accounts.stream()
+                        .filter(el -> accountId == el.getId())
+                        .findFirst()
+                        .orElse(null);
 
         LOGGER.info("Account Details retrieved: {}", accountDetails);
         return accountDetails;
+    }
+
+    @Override
+    public AccountDetails call() {
+        return getDetails(accountId);
     }
 }
