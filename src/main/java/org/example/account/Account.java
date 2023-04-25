@@ -40,9 +40,9 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                        "customer=" + customer +
-                        ", openDate='" + openDate + '\'' +
-                        ", prodType='" + prodType + '\'' +
+                        "customer=" + getCustomer() +
+                        ", openDate='" + getOpenDate() + '\'' +
+                        ", prodType='" + getProdType() + '\'' +
                         '}';
     }
 
